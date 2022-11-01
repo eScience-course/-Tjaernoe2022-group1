@@ -1,4 +1,4 @@
-# eScience Course 2022 Project Template
+# eScience Course 2022 Project Group 1
 
 [This template](https://github.com/eScience-course/escience2022-template) provides a starting point for [eScience Course](https://www.aces.su.se/research/projects/escience-tools-in-climate-science-linking-observations-with-modelling/) work groups.
 
