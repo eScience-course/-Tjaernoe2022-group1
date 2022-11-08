@@ -29,12 +29,12 @@ def compute_Nx_ebas_cleaned(ds, x=100, var_diam = 'D',v_dNdlog10D='particle_numb
     arg_gt_x = int(ds[var_diam].where(ds['diam_lims'].sel(limit='bottom') > x).argmin().values)
     # get limits for grid box below
     # In log space...
-    d_below = np.log10(ds['diam_lims'].isel(D=(arg_gt_x - 1)).sel(limit='bottom'))
-    d_above = np.log10(ds['diam_lims'].isel(D=(arg_gt_x - 1)).sel(limit='top'))
+    d_below = np.log10(ds['diam_lims'].isel(**{var_diam:(arg_gt_x - 1)}).sel(limit='bottom'))
+    d_above = np.log10(ds['diam_lims'].isel(**{var_diam:(arg_gt_x - 1)}).sel(limit='top'))
     # fraction of gridbox above limit:
     frac_ab = (d_above - np.log10(x)) / (d_above - d_below)
     # Include the fraction of the bin box above limit:
-    add = ds['dN'].isel(D=(arg_gt_x - 1)) * frac_ab
+    add = ds['dN'].isel(**{var_diam:(arg_gt_x - 1)}) * frac_ab
 
-    Nx_orig = ds['dN'].isel(D=slice(arg_gt_x,None)).sum('D') + add
+    Nx_orig = ds['dN'].isel(**{var_diam:slice(arg_gt_x,None)}).sum(var_diam) + add
     return Nx_orig
