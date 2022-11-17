@@ -38,3 +38,9 @@ def compute_Nx_ebas_cleaned(ds, x=100, var_diam = 'D',v_dNdlog10D='particle_numb
 
     Nx_orig = ds['dN'].isel(**{var_diam:slice(arg_gt_x,None)}).sum(var_diam) + add
     return Nx_orig
+
+
+def make_file_path_for_var(v,):
+    return path_to_data+v+postfix
+
+
